@@ -4,6 +4,6 @@
     "preview": "node src/index.js"
   },
   "dependencies": {
-    "inquire": "^0.4.8"
+    "inquirer": "^10.2.2"
   }
 }
