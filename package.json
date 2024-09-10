@@ -2,5 +2,8 @@
   "type": "module",
   "scripts": {
     "preview": "node src/index.js"
+  },
+  "dependencies": {
+    "inquire": "^0.4.8"
   }
 }

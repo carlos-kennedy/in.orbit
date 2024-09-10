@@ -1,9 +1,13 @@
-const start = () => {
-  console.log("Runing");
-  let count = 0;
-  while (count < 10) {
-    console.log(count);
-    count++;
+while (true) {
+  let option = "Cadastrar";
+  switch (option) {
+    case "Cadastrar":
+      console.log("Vamos cadastrar");
+      break;
+    case "Listar":
+      console.log("Vamos listar");
+      break;
+    case "Sair":
+      return;
   }
-};
-start();
+}
