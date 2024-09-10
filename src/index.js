@@ -1,14 +1,9 @@
-let meta = {
-  value: "Ir para a acadêmia",
-  checked: false,
+const start = () => {
+  console.log("Runing");
+  let count = 0;
+  while (count < 10) {
+    console.log(count);
+    count++;
+  }
 };
-
-let metas = [
-  meta,
-  {
-    value: "Estudar por mais de 1h",
-    checked: true,
-  },
-];
-
-console.log(metas[1].value);
+start();
