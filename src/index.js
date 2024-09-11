@@ -1,4 +1,25 @@
-import { select } from "@inquirer/prompts";
+import { select, input } from "@inquirer/prompts";
+
+let meta = {
+  value: "Fazer exercícios",
+  checked: false,
+};
+
+let metas = [meta];
+
+const cadastrarMeta = async () => {
+  const meta = await input({
+    message: "Digite a sua meta:",
+  });
+  // Faz com que o usuário digite algo
+  if (meta.length == 0) {
+    console.log("Por favor, a meta não pode ser vazia !");
+    return cadastrarMeta();
+  }
+
+  // Utilizado para enviar a meta para o array
+  metas.push({ value: meta, checked: false });
+};
 
 const start = async () => {
   while (true) {
@@ -22,7 +43,8 @@ const start = async () => {
     });
     switch (option) {
       case "Cadastrar":
-        console.log("Vamos cadastrar");
+        await cadastrarMeta();
+        console.log(metas);
         break;
       case "Listar":
         console.log("Vamos listar");
