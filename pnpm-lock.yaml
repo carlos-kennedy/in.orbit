@@ -11,9 +11,6 @@ importers:
       '@inquirer/prompts':
         specifier: ^5.5.0
         version: 5.5.0
-      '@inquirer/select':
-        specifier: ^2.5.0
-        version: 2.5.0
       inquirer:
         specifier: ^10.2.2
         version: 10.2.2

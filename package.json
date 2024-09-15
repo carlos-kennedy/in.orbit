@@ -1,9 +1,9 @@
 {
   "type": "module",
   "scripts": {
-    "preview": "node src/index.js"
+    "prev": "node src/index.js"
   },
   "dependencies": {
-    "inquirer": "^10.2.2"
+    "@inquirer/prompts": "^5.5.0"
   }
 }
