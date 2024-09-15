@@ -31,14 +31,16 @@ const listarMetas = async () => {
     choices: [...metas],
   });
 
+  // Faz com que as metas fiquem desmarcadas de ínicio 
+  metas.forEach((m) => {
+    m.checked = false;
+  });
+
   if (respostas.length == 0) {
     console.warn("Não houve nenhuma meta selecionada...");
     return;
   }
 
-  metas.forEach((m) => {
-    m.checked = false;
-  });
   // Selecionar para qual das metas é certa a ser encontrada
   // O m é uma varáivel a parte
   //  A função tem que voltar um trua ou false
