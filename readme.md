@@ -8,7 +8,7 @@
 <br>
 
 <p align="center">
-  <img alt="move" src="./.github/project.png" width="100%">
+  <img alt="in.orbit" src="/github/project.gif" width="100%">
 </p>
 
 ## 🚀 Tecnologias
