@@ -1,5 +1,7 @@
 import { select, input, checkbox } from "@inquirer/prompts";
 
+let mensagem = "Olá, bem-vindo(a) ao app de gerenciamento de metas ! ❤";
+
 // let meta = {};
 let metas = [];
 
@@ -9,18 +11,18 @@ const cadastrarMeta = async () => {
   });
   // Faz com que o usuário digite algo
   if (meta.length == 0) {
-    console.warn("Por favor, a meta não pode ser vazia !");
+    mensagem = "Por favor, a meta não pode ser vazia !";
     return cadastrarMeta();
   }
 
   // Utilizado para enviar a meta para o array
   metas.push({ value: meta, checked: false });
-  console.warn("Oba! Você criou uma nova meta! ✨");
+  mensagem = "Oba! Você criou uma nova meta! ✨";
 };
 
 const listarMetas = async () => {
   if (metas.length == 0) {
-    console.warn("Não há metas a serem selecionadas");
+    mensagem = "Não há metas a serem selecionadas";
     return;
   }
 
@@ -38,7 +40,7 @@ const listarMetas = async () => {
   });
 
   if (respostas.length == 0) {
-    console.warn("Não houve nenhuma meta selecionada...");
+    mensagem = "Não houve nenhuma meta selecionada...";
     return;
   }
 
@@ -53,7 +55,7 @@ const listarMetas = async () => {
     meta.checked = true;
   });
 
-  console.warn("Meta(s) marcadas como concluída(s) !");
+  mensagem = "Meta(s) marcadas como concluída(s) !";
 };
 
 const metasRealizadas = async () => {
@@ -102,7 +104,7 @@ const deletarMetas = async () => {
   });
 
   if (itemsADeletar.length == 0) {
-    console.warn("Nenhum item para deletar...");
+    mensagem = "Nenhum item para deletar...";
     return;
   }
 
@@ -112,16 +114,26 @@ const deletarMetas = async () => {
     });
   });
 
-  console.warn(
+  mensagem =
     "Meta(s) deletada(s) 🗑. " +
-      "Você excluiu " +
-      itemsADeletar.length +
-      " meta(s)"
-  );
+    "Você excluiu " +
+    itemsADeletar.length +
+    " meta(s)";
+};
+
+const mostrarMensagem = () => {
+  console.clear();
+
+  if (mensagem != "") {
+    console.log(mensagem);
+    console.log("");
+    mensagem = "";
+  }
 };
 
 const start = async () => {
   while (true) {
+    mostrarMensagem();
     // Aguardar ( Espere que o usuário vai selecionar alguma coisa)
     const option = await select({
       message: "Menu >",
