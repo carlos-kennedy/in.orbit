@@ -1,9 +1,24 @@
 import { select, input, checkbox } from "@inquirer/prompts";
+// Para utilizar o arquivo JSON do projeto
+
+import  fs  from "fs/promises";
 
 let mensagem = "Olá, bem-vindo(a) ao app de gerenciamento de metas ! ❤";
 
-// let meta = {};
-let metas = [];
+let metas;
+
+const carregarMetas = async () => {
+  try {
+    const dados = await fs.readFile("metas.json", "utf-8");
+    metas = JSON.parse(dados);
+  } catch (error) {
+    metas = [];
+  }
+};
+
+const salvarMetas = async () => {
+  await fs.writeFile("metas.json", JSON.stringify(metas, null, 2));
+};
 
 const cadastrarMeta = async () => {
   const meta = await input({
@@ -132,8 +147,11 @@ const mostrarMensagem = () => {
 };
 
 const start = async () => {
+  await carregarMetas();
   while (true) {
     mostrarMensagem();
+    await salvarMetas();
+
     // Aguardar ( Espere que o usuário vai selecionar alguma coisa)
     const option = await select({
       message: "Menu >",
@@ -168,9 +186,11 @@ const start = async () => {
       case "Cadastrar":
         await cadastrarMeta();
         console.log(metas);
+        await salvarMetas();
         break;
       case "Listar":
         await listarMetas();
+        await salvarMetas();
         break;
       case "Realizadas":
         await metasRealizadas();
