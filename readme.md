@@ -22,4 +22,4 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🚧 Projeto
 
-O in.orbit é um APP que você pode criar e gerênciar as suas metas ! 📖⌚
+O in.orbit é um APP que você pode criar e gerenciar as suas metas ! 📖⌚
