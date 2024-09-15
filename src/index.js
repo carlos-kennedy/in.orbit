@@ -15,6 +15,7 @@ const cadastrarMeta = async () => {
 
   // Utilizado para enviar a meta para o array
   metas.push({ value: meta, checked: false });
+  console.warn("Oba! Você criou uma nova meta! ✨");
 };
 
 const listarMetas = async () => {
@@ -31,7 +32,7 @@ const listarMetas = async () => {
     choices: [...metas],
   });
 
-  // Faz com que as metas fiquem desmarcadas de ínicio 
+  // Faz com que as metas fiquem desmarcadas de ínicio
   metas.forEach((m) => {
     m.checked = false;
   });
@@ -66,10 +67,28 @@ const metasRealizadas = async () => {
     return;
   }
   await select({
-    message: "Metas Realizadas",
+    message: "Metas Realizadas " + realizadas.length,
     choices: [...realizadas],
   });
   console.warn(realizadas);
+};
+
+const metasAbertas = async () => {
+  // Higher order funcitons
+  const abertas = metas.filter((meta) => {
+    // Diferente o inverso do true da meta.checked
+    return !meta.checked;
+  });
+
+  if (abertas.length == 0) {
+    console.warn("Não existem metas abertas! 😊");
+    return;
+  }
+  await select({
+    message: "Metas Abertas " + metas.length,
+    choices: [...abertas],
+  });
+  console.warn(abertas);
 };
 
 const start = async () => {
@@ -91,6 +110,10 @@ const start = async () => {
           value: "Realizadas",
         },
         {
+          name: "Metas Abertas",
+          value: "Abertas",
+        },
+        {
           name: "Sair",
           value: "Sair",
         },
@@ -106,6 +129,10 @@ const start = async () => {
         break;
       case "Realizadas":
         await metasRealizadas();
+        break;
+      case "Abertas":
+        await metasAbertas();
+        break;
       case "Sair":
         console.log("Volte sempre ! ");
         return;
