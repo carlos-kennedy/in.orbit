@@ -1,7 +1,7 @@
 import { select, input, checkbox } from "@inquirer/prompts";
 // Para utilizar o arquivo JSON do projeto
 
-import  fs  from "fs/promises";
+import fs from "fs/promises";
 
 let mensagem = "Olá, bem-vindo(a) ao app de gerenciamento de metas ! ❤";
 
@@ -75,6 +75,10 @@ const listarMetas = async () => {
 
 const metasRealizadas = async () => {
   // Higher order funcitons
+  if (metas.length == 0) {
+    mensagem = "Nenhuma meta realizada..";
+    return;
+  }
   const realizadas = metas.filter((meta) => {
     return meta.checked;
   });
@@ -92,6 +96,10 @@ const metasRealizadas = async () => {
 
 const metasAbertas = async () => {
   // Higher order funcitons
+  if (metas.length == 0) {
+    mensagem = "Não existem metas abertas..";
+    return;
+  }
   const abertas = metas.filter((meta) => {
     // Diferente o inverso do true da meta.checked
     return !meta.checked;
@@ -109,6 +117,10 @@ const metasAbertas = async () => {
 };
 
 const deletarMetas = async () => {
+  if (metas.length == 0) {
+    mensagem = "Nenhum item para deletar...";
+    return;
+  }
   const metasDesmarcadas = metas.map((meta) => {
     return { value: meta.value, checked: false };
   });
@@ -122,7 +134,6 @@ const deletarMetas = async () => {
     mensagem = "Nenhum item para deletar...";
     return;
   }
-
   itemsADeletar.forEach((item) => {
     metas = metas.filter((meta) => {
       return meta.value != item;
